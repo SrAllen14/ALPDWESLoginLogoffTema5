@@ -23,15 +23,12 @@
         }
         
         nav{
-            display: flex;
             background-color: #456D96; 
             color: white;
             width: 100%;
-            height: 10%;
-            justify-items: left;
-            text-align:left; 
-        }
-        
+            height: 96px;
+            align-content: center;
+        } 
         
         table.bd{
             width: 400px;
@@ -109,44 +106,24 @@
 <body>
     <nav>
         <h2 class="tituloProyecto">Log In - Log Off Tema 5</h2>
-        <h2 class="tituloPagina">Inicio Público</h2>
-        <form>
-            <button type="submit" name="login" id="login">Login</button>
-        </form>
+        <h2>Detalles</h2>
     </nav>
     <main>
         <div class="tabla2">
             <?php
-                if(isset($_REQUEST['login'])){
-                    header("location: codigoPHP/vLogin.php");
+                if(isset($_REQUEST['salir'])){
+                    header("location: vLogin.php");
                     exit;
                 }
             ?>
-            <!-- comment 
-            <table class="ejer">
-                <tbody>
-                    <tr class="principal">
-                        <td>Nº</td>
-                        <td>Enunciado</td>
-                        <td>Ejecutar</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td></td>
-                        <td class="imagen"></a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td></td>
-                        <td class="imagen"></a></td>
-                    </tr>
-                </tbody>
-            </table>-->
+            <form>
+                <button type="submit" name="salir" id="salir">Salir</button>
+            </form>
         </div>
     </main>
     <footer>
         <div>
-            <a href="/index.html">
+            <a href="../indexProyectoTema5.php">
            Álvaro Allén Perlines
             </a>
             <time datetime="2025-11-20">20-11-2025</time>
