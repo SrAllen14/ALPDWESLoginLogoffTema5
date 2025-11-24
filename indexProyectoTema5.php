@@ -32,6 +32,36 @@
             text-align:left; 
         }
         
+        /********/
+        /* Banderas */
+        
+        #espana{
+            width: 20px;
+            height: 20px;
+            background-image: url("https://flagcdn.com/es.svg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        #portugal{
+            width: 20px;
+            height: 20px;
+            background-image: url("https://flagcdn.com/pt.svg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        #francia{
+            width: 20px;
+            height: 20px;
+            background-image: url("https://flagcdn.com/fr.svg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        /********/
         
         table.bd{
             width: 400px;
@@ -56,12 +86,6 @@
             border-collapse: collapse;
             
         }
-        
-        img{
-            width: 50px;
-            height: 50px;
-        }
-        
         
         .principal{
             font-weight: bold;
@@ -110,7 +134,10 @@
     <nav>
         <h2 class="tituloProyecto">Log In - Log Off Tema 5</h2>
         <h2 class="tituloPagina">Inicio Público</h2>
-        <form>
+        <form method="post">
+            <button type="submit" name="francia" id="francia"></button>
+            <button type="submit" name="portugal" id="portugal"></button>
+            <button type="submit" name="espana" id="espana"></button>
             <button type="submit" name="login" id="login">Login</button>
         </form>
     </nav>
@@ -121,27 +148,16 @@
                     header("location: codigoPHP/vLogin.php");
                     exit;
                 }
+                if(isset($_REQUEST['espana'])){
+                    setcookie("idioma", "ES", time()+20000002);
+                }
+                if(isset($_REQUEST['francia'])){
+                    setcookie("idioma", "FR", time()+20000002);
+                }
+                if(isset($_REQUEST['portugal'])){
+                    setcookie("idioma", "PT", time()+20000002);
+                }
             ?>
-            <!-- comment 
-            <table class="ejer">
-                <tbody>
-                    <tr class="principal">
-                        <td>Nº</td>
-                        <td>Enunciado</td>
-                        <td>Ejecutar</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td></td>
-                        <td class="imagen"></a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td></td>
-                        <td class="imagen"></a></td>
-                    </tr>
-                </tbody>
-            </table>-->
         </div>
     </main>
     <footer>

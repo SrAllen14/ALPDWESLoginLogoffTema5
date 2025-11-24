@@ -114,6 +114,9 @@
     <main>
         <div class="tabla2">
             <?php
+                if($_COOKIE["idioma"]==="ES"){echo '<h2>Bienvenido a tu inicio privado</h2>';}
+                if($_COOKIE["idioma"]==="FR"){echo '<h2>Bienvenue a ta zone privée</h2>';}
+                if($_COOKIE["idioma"]==="PT"){echo '<h2>Bem-vindo ao teu início privado</h2>';}
                 if(isset($_REQUEST['detalles'])){
                     header("location: vDetalle.php");
                     exit;

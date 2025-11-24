@@ -81,6 +81,15 @@
             text-align: center;
         }
         
+        .nombre{
+            background-color: lightblue;
+            font-weight: bold;
+        }
+
+        .valor{
+            background-color: antiquewhite;
+        }
+        
         footer{
             margin: auto;
             background-color: #456d96;
@@ -107,18 +116,59 @@
     <nav>
         <h2 class="tituloProyecto">Log In - Log Off Tema 5</h2>
         <h2>Detalles</h2>
+        <form>
+            <button type="submit" name="cerrarS" id="cerrarS">Cerrar sesión</button>
+        </form>
     </nav>
     <main>
         <div class="tabla2">
-            <?php
-                if(isset($_REQUEST['salir'])){
-                    header("location: vLogin.php");
-                    exit;
-                }
-            ?>
             <form>
                 <button type="submit" name="salir" id="salir">Salir</button>
             </form>
+            <?php
+                if(isset($_REQUEST['salir'])){
+                    header("location: vInicioPrivado.php");
+                    exit;
+                }
+                if(isset($_REQUEST['cerrarS'])){
+                    header("location: ../indexProyectoTema5.php");
+                    exit;
+                }
+                echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';
+                echo "<table>";
+                if(!empty($_SESSION)){
+                    foreach ($_SESSION as $key => $value) {
+                        echo "<tr>";
+                        echo "<td class='nombre'>{$key}</td>";
+                        echo "<td class='valor'>{$value}</td>";
+                        echo "</tr>";
+                    }
+                }  else{
+                    echo "<tr>";
+                    echo "<td class='nombre'>No hay variable</td>";
+                    echo "<td class='valor'>No hay valor</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+
+                
+                echo '<h2>Valores de la variable superglobal: $_COOKIE</h2>';
+                echo "<table>";
+                if(!empty($_COOKIE)){
+                    foreach ($_COOKIE as $key => $value) {
+                        echo "<tr>";
+                        echo "<td class='nombre'>{$key}</td>";
+                        echo "<td class='valor'>{$value}</td>";
+                        echo "</tr>";
+                    }
+                } else{
+                    echo "<tr>";
+                    echo "<td class='nombre'>No hay variable</td>";
+                    echo "<td class='valor'>No hay valor</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            ?>
         </div>
     </main>
     <footer>
