@@ -4,180 +4,92 @@
     <meta name="description" content="Indice general de la asignatura">
     <meta name="author" content="Álvaro Allén Perlines">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../webroot/estilos/estilos.css"/>
+    <link rel="stylesheet" href="../webroot/estilos/banderas.css"/>
+    <link rel="stylesheet" href="../webroot/estilos/estilosFormulario.css"/>
+    <link rel="stylesheet" href="../webroot/estilos/estilosTabla.css"/>
     <title>Álvaro Allén Perlines</title>
-    <style>
-        
-        *{
-            box-sizing: border-box;
-            margin: 0 auto;
-            padding: 0 auto;
-        }
-        
-        body{
-            width: 1920px;
-            height: 1080px;
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            align-items: center;
-            text-align: center;
-        }
-        
-        nav{
-            background-color: #456D96; 
-            color: white;
-            width: 100%;
-            height: 96px;
-            align-content: center;
-        } 
-        
-        table.bd{
-            width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            border-collapse: collapse;
-        }
-        
-        div.tabla2{
-            margin:10px auto 10px auto;
-            padding: 10px;
-            width: 1500px;
-            
-            border-radius: 20px;
-            background-color: white; 
-        }
-        
-        table.ejer{
-            width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-            border-collapse: collapse;
-            
-        }
-        
-        img{
-            width: 50px;
-            height: 50px;
-        }
-        
-        
-        .principal{
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        td{
-            height: auto;
-            width: auto;
-            border: 1px solid gray;
-        }
-        
-        .imagen{
-            height: 50px;
-            width: 50px;
-        }
-        
-        .ejer td:nth-of-type(1){
-            width: 50px;
-            text-align: center;
-        }
-        
-        .nombre{
-            background-color: lightblue;
-            font-weight: bold;
-        }
-
-        .valor{
-            background-color: antiquewhite;
-        }
-        
-        footer{
-            margin: auto;
-            background-color: #456d96;
-            text-align: center;
-            align-content: center;
-            height: 10%;
-	    color: white;
-            
-            & a{
-               text-decoration: none; 
-            }
-        }
-                
-        i{
-            width: 10px;
-            height: 10px;
-            color: white;
-        }
-        
-
-    </style>
 </head>
 <body>
-    <nav>
-        <h2 class="tituloProyecto">Log In - Log Off Tema 5</h2>
-        <h2>Detalles</h2>
-        <form>
-            <button type="submit" name="cerrarS" id="cerrarS">Cerrar sesión</button>
-        </form>
-    </nav>
-    <main>
-        <div class="tabla2">
-            <form>
-                <button type="submit" name="salir" id="salir">Salir</button>
+    <header>
+        <div class="cabecera1">
+            <h2>Log In - Log Off Tema 5</h2>
+        </div>
+        <div class="cabecera2">
+            <h2>Página de detalles</h2>
+        </div>
+        <div class="cabecera3">
+            <form method="post">
+                <?php
+                    if($_COOKIE["idioma"]==="ES"){echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">';}
+                    if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
+                    if($_COOKIE["idioma"]==="PT"){echo '<img src="https://flagcdn.com/pt.svg" alt="imagen" width="20" height="20">';}
+                    if($_COOKIE["idioma"]===""){echo '<p>Idioma no escogido</p>';}
+                ?>
+                <button type="submit" name="cerrarS" id="cerrarS">Cerrar Sesión</button>
             </form>
-            <?php
-                if(isset($_REQUEST['salir'])){
-                    header("location: vInicioPrivado.php");
-                    exit;
-                }
-                if(isset($_REQUEST['cerrarS'])){
-                    header("location: ../indexProyectoTema5.php");
-                    exit;
-                }
-                echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';
-                echo "<table>";
-                if(!empty($_SESSION)){
-                    foreach ($_SESSION as $key => $value) {
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="tabla">
+                <?php
+                    if(isset($_REQUEST['salir'])){
+                        header("location: vInicioPrivado.php");
+                        exit;
+                    }
+                    if(isset($_REQUEST['cerrarS'])){
+                        header("location: ../indexProyectoTema5.php");
+                        exit;
+                    }
+                    echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';
+                    echo "<table>";
+                    if(!empty($_SESSION)){
+                        foreach ($_SESSION as $key => $value) {
+                            echo "<tr>";
+                            echo "<td class='nombre'>{$key}</td>";
+                            echo "<td class='valor'>{$value}</td>";
+                            echo "</tr>";
+                        }
+                    }  else{
                         echo "<tr>";
-                        echo "<td class='nombre'>{$key}</td>";
-                        echo "<td class='valor'>{$value}</td>";
+                        echo "<td class='nombre'>No hay variable</td>";
+                        echo "<td class='valor'>No hay valor</td>";
                         echo "</tr>";
                     }
-                }  else{
-                    echo "<tr>";
-                    echo "<td class='nombre'>No hay variable</td>";
-                    echo "<td class='valor'>No hay valor</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
+                    echo "</table>";
 
-                
-                echo '<h2>Valores de la variable superglobal: $_COOKIE</h2>';
-                echo "<table>";
-                if(!empty($_COOKIE)){
-                    foreach ($_COOKIE as $key => $value) {
+
+                    echo '<h2>Valores de la variable superglobal: $_COOKIE</h2>';
+                    echo "<table>";
+                    if(!empty($_COOKIE)){
+                        foreach ($_COOKIE as $key => $value) {
+                            echo "<tr>";
+                            echo "<td class='nombre'>{$key}</td>";
+                            echo "<td class='valor'>{$value}</td>";
+                            echo "</tr>";
+                        }
+                    } else{
                         echo "<tr>";
-                        echo "<td class='nombre'>{$key}</td>";
-                        echo "<td class='valor'>{$value}</td>";
+                        echo "<td class='nombre'>No hay variable</td>";
+                        echo "<td class='valor'>No hay valor</td>";
                         echo "</tr>";
                     }
-                } else{
-                    echo "<tr>";
-                    echo "<td class='nombre'>No hay variable</td>";
-                    echo "<td class='valor'>No hay valor</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-            ?>
+                    echo "</table>";
+                ?>
+                <form>
+                    <button type="submit" name="salir" id="salir">Salir</button>
+                </form>
+            </div>
         </div>
     </main>
     <footer>
-        <div>
-            <a href="../indexProyectoTema5.php">
-           Álvaro Allén Perlines
-            </a>
-            <time datetime="2025-11-20">20-11-2025</time>
-            <a href="https://github.com/SrAllen14/ALPDWESLoginLogoffTema5/tree/master" target="blank"><i class="fa-brands fa-github fa-2x"></i></a>
+        <div class="pie1">
+            <a href="../indexProyectoTema5.php">Álvaro Allén Perlines</a>
+            <time>2025-11-24</time>
+        </div>
+        <div class="pie2">
+            <a href="https://github.com/SrAllen14/ALPDWESLoginLogoffTema5/tree/master" target="blank"><i class="fab fa-github"></i></a>
         </div>
     </footer>
 </body>

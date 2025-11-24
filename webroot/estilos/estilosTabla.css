@@ -1,0 +1,34 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 20 nov 2025, 16:14:15
+    Author     : Clase
+*/
+
+.tabla{
+    width: 90%;
+    height: 50%;
+    text-align: center;
+}
+
+table{
+    border-collapse: collapse;
+    width: 50%;
+    height: 100%;
+    margin: 10px auto;
+}
+
+td{
+    border: 1px solid gray;
+}
+
+.nombre{
+    background-color: lightblue;
+    font-weight: bold;
+}
+
+.valor{
+    background-color: antiquewhite;
+}
