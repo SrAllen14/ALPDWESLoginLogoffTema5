@@ -1,0 +1,40 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 20 nov 2025, 16:24:49
+    Author     : Clase
+*/
+
+.formulario{
+    background-color: #f7f5f5;
+    width: 33%;
+    padding: 40px;
+    text-align: center;
+}
+
+h1{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#nombre, #pass{
+    width: 70%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+
+#iniciar, #registrar, #cancelar, #login, #detalles, #cerrarS, #salir{
+    margin-top: 20px;
+    background-color: #ffcc00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
