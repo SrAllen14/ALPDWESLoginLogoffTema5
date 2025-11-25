@@ -26,6 +26,7 @@ h1{
     border: none;
     border-bottom: 1px solid #ccc;
     font-size: 14px;
+    background-color: #FCF8CC;
 }
 
 #iniciar, #registrar, #cancelar, #login, #detalles, #cerrarS, #salir{
@@ -37,4 +38,3 @@ h1{
     cursor: pointer;
     font-weight: bold;
 }
-
