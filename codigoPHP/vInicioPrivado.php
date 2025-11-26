@@ -1,3 +1,50 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        header('Location: ../indexProyectoTema5.php');
+        exit;
+    }
+    if($_COOKIE["idioma"]==="ES"){
+        $fecha = new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/Madrid'));
+
+        $fmt = new IntlDateFormatter(
+            'es_ES',                     // Locale en portugués
+            IntlDateFormatter::FULL,     // Formato completo del día
+            IntlDateFormatter::SHORT,    // Formato de hora
+            'Europe/Madrid',             // Timezone
+            IntlDateFormatter::GREGORIAN,
+            "EEEE d 'de' MMMM 'de' yyyy 'a las' HH:mm"  // Formato personalizado
+        );
+        $fechaFormateada = $fmt->format($fecha);
+    }
+
+    if($_COOKIE["idioma"]==="FR"){
+        $fecha = new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/Paris'));
+        $fmt = new IntlDateFormatter(
+            'fr_FR',                     // Locale en portugués
+            IntlDateFormatter::FULL,     // Formato completo del día
+            IntlDateFormatter::SHORT,    // Formato de hora
+            'Europe/Paris',             // Timezone
+            IntlDateFormatter::GREGORIAN,
+            "EEEE d  MMMM  yyyy 'à' HH:mm"  // Formato personalizado
+        );
+        $fechaFormateada = $fmt->format($fecha);
+    }
+
+    if($_COOKIE["idioma"]==="PT"){
+        $fecha = new DateTime($_SESSION['ultimaConexion'], new DateTimeZone('Europe/Lisbon'));
+        $fmt = new IntlDateFormatter(
+            'pt_PT',                     // Locale en portugués
+            IntlDateFormatter::FULL,     // Formato completo del día
+            IntlDateFormatter::SHORT,    // Formato de hora
+            'Europe/Lisbon',             // Timezone
+            IntlDateFormatter::GREGORIAN,
+            "EEEE d 'de' MMMM 'de' yyyy 'às' HH:mm"  // Formato personalizado
+        );
+        $fechaFormateada = $fmt->format($fecha);
+    }
+?>
+
 <html lang="es"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,9 +80,9 @@
         <div class="container">
             <div class="formulario">
                 <?php
-                    if($_COOKIE["idioma"]==="ES"){echo '<h2>Bienvenido a tu inicio privado</h2>';}
-                    if($_COOKIE["idioma"]==="FR"){echo '<h2>Bienvenue a ta zone privée</h2>';}
-                    if($_COOKIE["idioma"]==="PT"){echo '<h2>Bem-vindo ao teu início privado</h2>';}
+                    if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['descripcion']."<br> Esta es la ".$_SESSION['numConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
+                    if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['descripcion']."<br> C´est le ".$_SESSION['numConexiones']." fois que vous vous connectez.<br>Vous vous êtes connecté pour la dernière fois le ".$fechaFormateada."</h2>";}
+                    if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['descripcion']."<br> Esta é a ".$_SESSION['numConexiones']." vez que se conecta.<br>Você conectou-se pela última vez em ".$fechaFormateada."</h2>";}
                     if(isset($_REQUEST['detalles'])){
                         header("location: vDetalle.php");
                         exit;
@@ -53,8 +100,8 @@
     </main>
     <footer>
         <div class="pie1">
-            <a href="../index.html">Álvaro Allén Perlines</a>
-            <time>2025-11-24</time>
+            <a href="../indexProyectoTema5.php">Álvaro Allén Perlines</a>
+            <time>2025-11-26</time>
         </div>
         <div class="pie2">
             <a href="https://github.com/SrAllen14/ALPDWESLoginLogoffTema5/tree/master" target="blank"><i class="fab fa-github"></i></a>

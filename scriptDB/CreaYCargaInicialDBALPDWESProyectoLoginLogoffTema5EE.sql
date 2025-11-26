@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS T01_Usuario(
     T01_CodUsuario VARCHAR(8) PRIMARY KEY,
     T01_Password VARCHAR(255),
     T01_DescUsuario VARCHAR(255),
-    T01_NumConexiones INT DEFAULT 1,
+    T01_NumConexiones INT DEFAULT 0,
     T01_FechaHoraUltimaConexion DATETIME,
     T01_Perfil VARCHAR(10) DEFAULT "usuario",
     T01_ImagenUsuario VARCHAR(255)
@@ -30,9 +30,12 @@ USE DBALPDWESLoginLogoffTema5;
 
 
 INSERT INTO T01_Usuario (T01_CodUsuario,T01_Password,T01_DescUsuario, T01_FechaHoraUltimaConexion, T01_ImagenUsuario) VALUES
-('useralva',SHA2('useralvapaso', 256),'Alvaro Allen',NOW(),null),
-('useraaa',SHA2('useraaapaso', 256),'Mario Fernandez Lopez',NOW(),null),
-('userbbb',SHA2('userbbbpaso', 256),'María Gonzalez Martin',NOW(),null);
+('alvaro',SHA2('alvaropaso', 256),'Alvaro Allen',NOW(),null),
+('heraclio',SHA2('heracliopaso', 256),'Heraclio Borbujo',NOW(),null),
+('gonzalo',SHA2('gonzalopaso', 256),'Gonzalo Junquera',NOW(),null),
+('vero',SHA2('veropaso', 256),'Veronique Grue',NOW(),null),
+('amor',SHA2('amorpaso', 256),'Amor Rodriguez',NOW(),null),
+('admin',SHA2('adminpaso', 256),'Administrador',NOW(),null);
 
 -- Insertamos en la tabla correspondiente cada uno de los valores por cada columna --
 INSERT INTO T02_Departamento VALUES

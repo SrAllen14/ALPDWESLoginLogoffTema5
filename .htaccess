@@ -1,0 +1,3 @@
+DirectoryIndex /ALPDWESLoginLogoffTema5/indexProyectoTema5.php
+ErrorDocument 403 /ALPDWESLoginLogoffTema5/error/403.html
+ErrorDocument 404 /ALPDWESLoginLogoffTema5/error/404.html
