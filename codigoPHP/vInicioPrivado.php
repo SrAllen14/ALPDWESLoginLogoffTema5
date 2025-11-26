@@ -100,7 +100,7 @@
     </main>
     <footer>
         <div class="pie1">
-            <a href="../index.html">Álvaro Allén Perlines</a>
+            <a href="../indexProyectoTema5.php">Álvaro Allén Perlines</a>
             <time>2025-11-26</time>
         </div>
         <div class="pie2">
