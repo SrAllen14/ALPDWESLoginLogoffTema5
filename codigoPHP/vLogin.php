@@ -4,9 +4,6 @@
         exit;
     }
     
-    if(!isset($_COOKIE['idioma'])){
-        setcookie('idioma',"ES");
-    }
     require_once '../core/231018libreriaValidacion.php';
     require_once '../config/confDB.php';
 
