@@ -3,6 +3,10 @@
         header("location: ../indexProyectoTema5.php");
         exit;
     }
+    
+    if(!isset($_COOKIE['idioma'])){
+        setcookie('idioma',"ES");
+    }
     require_once '../core/231018libreriaValidacion.php';
     require_once '../config/confDB.php';
 
@@ -33,7 +37,7 @@
         try{
             $miDB = new PDO(DSN, USERNAME, PASSWORD);
 
-            $sql = "SELECT T01_CodUsuario, T01_Password FROM T01_Usuario WHERE T01_CodUsuario = :usuario AND T01_Password = sha2(:pass, 256)";
+            $sql = "SELECT T01_CodUsuario, T01_DescUsuario, T01_FechaHoraUltimaConexion, T01_NumConexiones FROM T01_Usuario WHERE T01_CodUsuario = :usuario AND T01_Password = sha2(:pass, 256)";
             $consultaPreparada = $miDB->prepare($sql);
 
             $consultaPreparada->execute([
@@ -46,6 +50,26 @@
             if (!$aResultados) {
                 $entradaOK = false;
             } else{
+                session_start();
+                
+                $actualizacion = "UPDATE T01_Usuario SET T01_FechaHoraUltimaConexion = NOW(), T01_NumConexiones = T01_NumConexiones + 1 WHERE T01_CodUsuario = :usuario";
+                $consultaPreparada2 = $miDB->prepare($actualizacion);
+                $consultaPreparada2->execute([':usuario' => $_REQUEST['nombre']]);
+                
+                $datosActualizados = "SELECT T01_CodUsuario, T01_DescUsuario, T01_FechaHoraUltimaConexion, T01_NumConexiones FROM T01_Usuario WHERE T01_CodUsuario = :usuario";
+                $consultaPreparada3 = $miDB->prepare($datosActualizados);
+
+                $consultaPreparada3->execute([
+                    ':usuario' => $_REQUEST['nombre']
+                ]);
+                
+                $aResultados = $consultaPreparada3->fetch();
+                
+                $_SESSION['usuario'] = $aResultados['T01_CodUsuario'];
+                $_SESSION['descripcion'] = $aResultados['T01_DescUsuario'];
+                $_SESSION['ultimaConexion'] = $aResultados['T01_FechaHoraUltimaConexion'];
+                $_SESSION['numConexiones'] = $aResultados['T01_NumConexiones'];
+                
                 header("Location: vInicioPrivado.php");
                 exit;
             }

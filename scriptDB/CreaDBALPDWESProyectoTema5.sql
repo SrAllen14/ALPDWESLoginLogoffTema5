@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS T01_Usuario(
     T01_CodUsuario VARCHAR(8) PRIMARY KEY,
     T01_Password VARCHAR(255),
     T01_DescUsuario VARCHAR(255),
-    T01_NumConexiones INT DEFAULT 1,
+    T01_NumConexiones INT DEFAULT 0,
     T01_FechaHoraUltimaConexion DATETIME,
     T01_Perfil VARCHAR(10) DEFAULT "usuario",
     T01_ImagenUsuario VARCHAR(255)
