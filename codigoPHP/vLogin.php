@@ -43,7 +43,7 @@
             ]);
 
             $aResultados = $consultaPreparada->fetch();
-
+            $fechaUltimaConexion = $aResultados['T01_FechaHoraUltimaConexion'];
             if (!$aResultados) {
                 $entradaOK = false;
             } else{
@@ -64,7 +64,7 @@
                 
                 $_SESSION['usuario'] = $aResultados['T01_CodUsuario'];
                 $_SESSION['descripcion'] = $aResultados['T01_DescUsuario'];
-                $_SESSION['ultimaConexion'] = $aResultados['T01_FechaHoraUltimaConexion'];
+                $_SESSION['ultimaConexion'] = $fechaUltimaConexion;
                 $_SESSION['numConexiones'] = $aResultados['T01_NumConexiones'];
                 
                 header("Location: vInicioPrivado.php");
