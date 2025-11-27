@@ -4,7 +4,7 @@
         header('Location: vLogin.php');
         exit;
     }
-    if($_COOKIE["idioma"]==="ES" || !isset($_COOKIE["idioma"])){
+    if($_COOKIE["idioma"]==="ES"){
         $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Madrid'));
 
         $fmt = new IntlDateFormatter(
@@ -67,7 +67,7 @@
         <div class="cabecera3">
             <form method="post">
                 <?php
-                    if($_COOKIE["idioma"]==="ES" || !(isset($_COOKIE["idioma"]))){
+                    if($_COOKIE["idioma"]==="ES"){
                         echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">'; 
                     }
                     if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
@@ -82,13 +82,13 @@
             <div class="formulario">
                 <?php
                     if(!empty($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'])){
-                        if($_COOKIE["idioma"]==="ES" || !(isset($_COOKIE))){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
+                        if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
                         if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.<br>Vous vous êtes connecté pour la dernière fois le ".$fechaFormateada."</h2>";}
                         if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Você conectou-se pela última vez em ".$fechaFormateada."</h2>";}
                     } else{
-                        if($_COOKIE["idioma"]==="ES" || !(isset($_COOKIE["idioma"]))){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
-                    if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.</h2>";}
-                    if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
+                        if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
+                        if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.</h2>";}
+                        if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
                     }
                     
                     

@@ -4,7 +4,7 @@
         exit;
     }
     
-    if(!isset($_COOKIE)){
+    if(!isset($_COOKIE['idioma'])){
         setcookie("idioma", "ES", time()+20000002);
     }
     
@@ -47,9 +47,9 @@
         </div>
         <div class="cabecera3">
             <form method="post">
-                <button type="submit" name="francia" id="francia"><?php? if($_COOKIE['idioma']==='FR'){echo "✅"}?></button>
-                <button type="submit" name="portugal" id="portugal"><?php? if($_COOKIE['idioma']==='PT'){echo "✅"}?></button>
-                <button type="submit" name="espana" id="espana"><?php? if($_COOKIE['idioma']==='ES'){echo "✅"}?></button>
+                <button type="submit" name="francia" id="francia"><?php if($_COOKIE['idioma']==='FR'){echo "\u{2714}";}?></button>
+                <button type="submit" name="portugal" id="portugal"><?php if($_COOKIE['idioma']==='PT'){echo "\u{2714}";}?></button>
+                <button type="submit" name="espana" id="espana"><?php if($_COOKIE['idioma']==='ES'){echo "\u{2714}";}?></button>
                 <button type="submit" name="login" id="login">Login</button>
             </form>
         </div>
