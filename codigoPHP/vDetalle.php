@@ -11,11 +11,109 @@
     <meta name="description" content="Indice general de la asignatura">
     <meta name="author" content="Álvaro Allén Perlines">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="../webroot/estilos/estilos.css"/>
     <link rel="stylesheet" href="../webroot/estilos/banderas.css"/>
-    <link rel="stylesheet" href="../webroot/estilos/estilosFormulario.css"/>
-    <link rel="stylesheet" href="../webroot/estilos/estilosTabla.css"/>
     <title>Álvaro Allén Perlines</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            align-items: center;
+            text-align: center;
+        }
+        
+        header{
+            height: 10%;
+            width: 100%;
+            background-color: skyblue;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        }
+        
+        footer{
+            width: 100%;
+            background-color: skyblue;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        }
+        .cabecera1{
+            text-align: left;
+            width: 33%;
+            padding: 20px;
+        }
+
+        .cabecera2{
+            text-align: center;
+            width: 33%;
+        }
+
+        .cabecera3{
+            text-align: right;
+            width: 33%;
+            padding: 20px;
+        }
+        .container{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 10px;  
+        }
+
+        table{
+            border-collapse: collapse;
+            margin: 10px auto;
+            & td{
+                border: 1px solid black;
+            }
+        }
+
+        .nombre{
+            background-color: lightblue;
+            font-weight: bold;
+        }
+
+        .valor{
+            background-color: antiquewhite;
+        }
+        footer{
+            margin: auto;
+            text-align: center;
+            align-content: center;
+            height: 50px;;
+            color: white;
+
+            & a{
+               text-decoration: none; 
+            }
+        }
+        #cerrarS, #salir{
+            margin-top: 20px;
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -83,7 +181,7 @@
                     }
                     echo "</table>";
                     
-                    echo '<h2>Valores de la variable superglobal: $_REQUEST</h2>';
+                    echo '<h2>Valores de la variable superglobal: $_SERVER</h2>';
                     echo "<table>";
                     if(!empty($_SERVER)){
                         foreach ($_SERVER as $key => $value) {

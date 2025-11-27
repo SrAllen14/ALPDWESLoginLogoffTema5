@@ -82,9 +82,17 @@
         <div class="container">
             <div class="formulario">
                 <?php
-                    if($_COOKIE["idioma"]==="ES" || !(isset($_COOKIE["idioma"]))){echo "<h2>Bienvenido ".$_SESSION['descripcion']."<br> Esta es la ".$_SESSION['numConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
-                    if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['descripcion']."<br> C´est le ".$_SESSION['numConexiones']." fois que vous vous connectez.<br>Vous vous êtes connecté pour la dernière fois le ".$fechaFormateada."</h2>";}
-                    if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['descripcion']."<br> Esta é a ".$_SESSION['numConexiones']." vez que se conecta.<br>Você conectou-se pela última vez em ".$fechaFormateada."</h2>";}
+                    if(!empty($_SESSION['ultimaConexion'])){
+                        if($_COOKIE["idioma"]==="ES" || !(isset($_COOKIE["idioma"]))){echo "<h2>Bienvenido ".$_SESSION['descripcion']."<br> Esta es la ".$_SESSION['numConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
+                        if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['descripcion']."<br> C´est le ".$_SESSION['numConexiones']." fois que vous vous connectez.<br>Vous vous êtes connecté pour la dernière fois le ".$fechaFormateada."</h2>";}
+                        if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['descripcion']."<br> Esta é a ".$_SESSION['numConexiones']." vez que se conecta.<br>Você conectou-se pela última vez em ".$fechaFormateada."</h2>";}
+                    } else{
+                        if($_COOKIE["idioma"]==="ES" || !(isset($_COOKIE["idioma"]))){echo "<h2>Bienvenido ".$_SESSION['descripcion']."<br> Esta es la ".$_SESSION['numConexiones']." vez que se conecta.</h2>";}
+                    if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['descripcion']."<br> C´est le ".$_SESSION['numConexiones']." fois que vous vous connectez.</h2>";}
+                    if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['descripcion']."<br> Esta é a ".$_SESSION['numConexiones']." vez que se conecta.</h2>";}
+                    }
+                    
+                    
                     if(isset($_REQUEST['detalles'])){
                         header("location: vDetalle.php");
                         exit;
