@@ -28,10 +28,9 @@
         <div class="cabecera3">
             <form method="post">
                 <?php
-                    if($_COOKIE["idioma"]==="ES"){echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">';}
+                    if($_COOKIE["idioma"]==="ES" || !isset($_COOKIE["idioma"])){echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">';}
                     if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
                     if($_COOKIE["idioma"]==="PT"){echo '<img src="https://flagcdn.com/pt.svg" alt="imagen" width="20" height="20">';}
-                    if($_COOKIE["idioma"]===""){echo '<p>Idioma no escogido</p>';}
                 ?>
                 <button type="submit" name="cerrarS" id="cerrarS">Cerrar Sesión</button>
             </form>
@@ -71,6 +70,23 @@
                     echo "<table>";
                     if(!empty($_COOKIE)){
                         foreach ($_COOKIE as $key => $value) {
+                            echo "<tr>";
+                            echo "<td class='nombre'>{$key}</td>";
+                            echo "<td class='valor'>{$value}</td>";
+                            echo "</tr>";
+                        }
+                    } else{
+                        echo "<tr>";
+                        echo "<td class='nombre'>No hay variable</td>";
+                        echo "<td class='valor'>No hay valor</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                    
+                    echo '<h2>Valores de la variable superglobal: $_REQUEST</h2>';
+                    echo "<table>";
+                    if(!empty($_SERVER)){
+                        foreach ($_SERVER as $key => $value) {
                             echo "<tr>";
                             echo "<td class='nombre'>{$key}</td>";
                             echo "<td class='valor'>{$value}</td>";

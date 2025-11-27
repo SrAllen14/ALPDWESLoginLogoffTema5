@@ -90,6 +90,7 @@
                         exit;
                     }
                     if(isset($_REQUEST['cerrarS'])){
+                        session_unset();
                         header("location: ../indexProyectoTema5.php");
                         exit;
                     }
