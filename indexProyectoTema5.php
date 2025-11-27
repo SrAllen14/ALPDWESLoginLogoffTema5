@@ -3,14 +3,26 @@
         header("location: codigoPHP/vLogin.php");
         exit;
     }
+    
+    if(!isset($_COOKIE)){
+        setcookie("idioma", "ES", time()+20000002);
+    }
+    
     if(isset($_REQUEST['espana'])){
         setcookie("idioma", "ES", time()+20000002);
+        header('Location: ./indexProyectoTema5.php');
+        exit;
+        
     }
     if(isset($_REQUEST['francia'])){
         setcookie("idioma", "FR", time()+20000002);
+        header('Location: ./indexProyectoTema5.php');
+        exit;
     }
     if(isset($_REQUEST['portugal'])){
         setcookie("idioma", "PT", time()+20000002);
+        header('Location: ./indexProyectoTema5.php');
+        exit;
     }
 ?>
 
@@ -35,9 +47,9 @@
         </div>
         <div class="cabecera3">
             <form method="post">
-                <button type="submit" name="francia" id="francia"></button>
-                <button type="submit" name="portugal" id="portugal"></button>
-                <button type="submit" name="espana" id="espana"></button>
+                <button type="submit" name="francia" id="francia"><?php? if($_COOKIE['idioma']==='FR'){echo "✅"}?></button>
+                <button type="submit" name="portugal" id="portugal"><?php? if($_COOKIE['idioma']==='PT'){echo "✅"}?></button>
+                <button type="submit" name="espana" id="espana"><?php? if($_COOKIE['idioma']==='ES'){echo "✅"}?></button>
                 <button type="submit" name="login" id="login">Login</button>
             </form>
         </div>

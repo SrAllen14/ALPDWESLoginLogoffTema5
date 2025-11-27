@@ -1,8 +1,5 @@
 <?php
-    if(isset($_REQUEST['cancelar'])){
-        header("location: ../indexProyectoTema5.php");
-        exit;
-    }
+    
     
     require_once '../core/231018libreriaValidacion.php';
     require_once '../config/confDB.php';
@@ -12,7 +9,10 @@
         'pass' => '',
     ];
 
-
+    if(isset($_REQUEST['cancelar'])){
+        header('Location: ../indexProyectoTema5.php');
+        exit;
+    }
     $entradaOK = true;
     if(isset($_REQUEST['iniciar'])){
         $aErrores['user'] = validacionFormularios::comprobarAlfanumerico($_REQUEST['nombre'], 80, 1, 1);
@@ -61,12 +61,16 @@
                 ]);
                 
                 $aResultados = $consultaPreparada3->fetch();
+                $fechaActual = new DateTime('now', new DateTimeZone('Europe/Madrid'));
+                $aSession = [
+                    "CodUsuario" => $aResultados['T01_CodUsuario'],
+                    "DescUsuario" => $aResultados['T01_DescUsuario'],
+                    "FechaHoraUltimaConexion" => $fechaUltimaConexion,
+                    "FechaHoraConexionActual" => $fechaActual,
+                    "NumConexiones" => $aResultados['T01_NumConexiones']
+                ];
                 
-                $_SESSION['usuario'] = $aResultados['T01_CodUsuario'];
-                $_SESSION['descripcion'] = $aResultados['T01_DescUsuario'];
-                $_SESSION['ultimaConexion'] = $fechaUltimaConexion;
-                $_SESSION['numConexiones'] = $aResultados['T01_NumConexiones'];
-                
+                $_SESSION['usuarioALPDWESLoginLogoff'] = $aSession;
                 header("Location: vInicioPrivado.php");
                 exit;
             }

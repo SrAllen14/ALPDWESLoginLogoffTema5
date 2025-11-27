@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['usuario'])){
+    if(!isset($_SESSION)){
         header('Location: vLogin.php');
         exit;
     }
@@ -93,6 +93,10 @@
         .valor{
             background-color: antiquewhite;
         }
+        
+        .titulo{
+            background-color: lightgreen;
+        }
         footer{
             margin: auto;
             text-align: center;
@@ -146,13 +150,13 @@
                         header("location: ../indexProyectoTema5.php");
                         exit;
                     }
-                    echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';
+                     echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';
                     echo "<table>";
                     if(!empty($_SESSION)){
                         foreach ($_SESSION as $key => $value) {
                             echo "<tr>";
-                            echo "<td class='nombre'>{$key}</td>";
-                            echo "<td class='valor'>{$value}</td>";
+                            echo '<td class = nombre>'.$key.'</td>';
+                            echo "<td class='valor'><pre> ". print_r($value, true) ."</pre></td>";
                             echo "</tr>";
                         }
                     }  else{
