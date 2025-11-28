@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION)){
-        header('Location: vLogin.php');
+        header('Location: login.php');
         exit;
     }
 ?>
@@ -143,11 +143,11 @@
             <div class="tabla">
                 <?php
                     if(isset($_REQUEST['salir'])){
-                        header("location: vInicioPrivado.php");
+                        header("location: inicioPrivado.php");
                         exit;
                     }
                     if(isset($_REQUEST['cerrarS'])){
-                        header("location: ../indexProyectoTema5.php");
+                        header("location: ../indexLoginLogoffTema5.php");
                         exit;
                     }
                      echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';

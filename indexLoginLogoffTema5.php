@@ -1,29 +1,22 @@
 <?php
     if(isset($_REQUEST['login'])){
-        header("location: codigoPHP/vLogin.php");
+        header("location: codigoPHP/login.php");
         exit;
     }
     
     if(!isset($_COOKIE['idioma'])){
-        setcookie("idioma", "ES", time()+20000002);
+        setcookie("idioma", "ES", time()+604.800);
+        header('Location: ./indexLoginLogoffTema5.php');
+        exit;
+    } 
+    
+    if(isset($_REQUEST['idioma'])){
+        setcookie("idioma", $_REQUEST['idioma'], time()+604.800); // caducidad 1 semana
+        header('Location: ./indexLoginLogoffTema5.php');
+        exit;
     }
     
-    if(isset($_REQUEST['espana'])){
-        setcookie("idioma", "ES", time()+20000002);
-        header('Location: ./indexProyectoTema5.php');
-        exit;
-        
-    }
-    if(isset($_REQUEST['francia'])){
-        setcookie("idioma", "FR", time()+20000002);
-        header('Location: ./indexProyectoTema5.php');
-        exit;
-    }
-    if(isset($_REQUEST['portugal'])){
-        setcookie("idioma", "PT", time()+20000002);
-        header('Location: ./indexProyectoTema5.php');
-        exit;
-    }
+    
 ?>
 
 <html lang="es"><head>
@@ -47,9 +40,9 @@
         </div>
         <div class="cabecera3">
             <form method="post">
-                <button type="submit" name="francia" id="francia"><?php if($_COOKIE['idioma']==='FR'){echo "\u{2714}";}?></button>
-                <button type="submit" name="portugal" id="portugal"><?php if($_COOKIE['idioma']==='PT'){echo "\u{2714}";}?></button>
-                <button type="submit" name="espana" id="espana"><?php if($_COOKIE['idioma']==='ES'){echo "\u{2714}";}?></button>
+                <button type="submit" name="idioma" id="francia" value="FR"><?php if($_COOKIE['idioma']==='FR'){echo "\u{2714}";}?></button>
+                <button type="submit" name="idioma" id="portugal" value="PT"><?php if($_COOKIE['idioma']==='PT'){echo "\u{2714}";}?></button>
+                <button type="submit" name="idioma" id="espana" value="ES"><?php if($_COOKIE['idioma']==='ES'){echo "\u{2714}";}?></button>
                 <button type="submit" name="login" id="login">Login</button>
             </form>
         </div>

@@ -5,18 +5,18 @@
     require_once '../config/confDB.php';
 
     $aErrores = [
-        'user' => '',
-        'pass' => '',
+        'CodUsuario' => '',
+        'Password' => '',
     ];
 
     if(isset($_REQUEST['cancelar'])){
-        header('Location: ../indexProyectoTema5.php');
+        header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
     $entradaOK = true;
     if(isset($_REQUEST['iniciar'])){
-        $aErrores['user'] = validacionFormularios::comprobarAlfanumerico($_REQUEST['nombre'], 80, 1, 1);
-        $aErrores['pass'] = validacionFormularios::comprobarAlfanumerico($_REQUEST['pass'], 8, 4, 1);
+        $aErrores['CodUsuario'] = validacionFormularios::comprobarAlfanumerico($_REQUEST['nombre'], 80, 1, 1);
+        $aErrores['Password'] = validacionFormularios::comprobarAlfanumerico($_REQUEST['pass'], 8, 4, 1);
 
         //recorre el array de errores para detectar si hay alguno
         foreach ($aErrores as $campo => $valorCampo) {
@@ -43,7 +43,7 @@
             ]);
 
             $aResultados = $consultaPreparada->fetch();
-            $fechaUltimaConexion = $aResultados['T01_FechaHoraUltimaConexion'];
+            
             if (!$aResultados) {
                 $entradaOK = false;
             } else{
@@ -61,6 +61,7 @@
                 ]);
                 
                 $aResultados = $consultaPreparada3->fetch();
+                $fechaUltimaConexion = $aResultados['T01_FechaHoraUltimaConexion'];
                 $fechaActual = new DateTime('now', new DateTimeZone('Europe/Madrid'));
                 $aSession = [
                     "CodUsuario" => $aResultados['T01_CodUsuario'],
@@ -71,7 +72,7 @@
                 ];
                 
                 $_SESSION['usuarioALPDWESLoginLogoff'] = $aSession;
-                header("Location: vInicioPrivado.php");
+                header("Location: inicioPrivado.php");
                 exit;
             }
         } catch(PDOException $exPDO){
@@ -83,7 +84,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Plantilla HTML</title>
+        <title>Login-Logoff</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -111,7 +112,7 @@
         <main>
             <div class="container">
                 <div class="formulario">
-                    <form method="post" action="/ALPDWESLoginLogoffTema5/codigoPHP/vLogin.php">
+                    <form method="post" action="/ALPDWESLoginLogoffTema5/codigoPHP/login.php">
                         <h1>Inicio de sesión</h1>
                         <input class="obligatorio" name="nombre" id="nombre" type="text" placeholder="Usuario..."><br><br>
                         <input class='obligatorio' name="pass" id="pass" type="password" placeholder="Contraseña..."><br><br>

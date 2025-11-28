@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION)){
-        header('Location: vLogin.php');
+        header('Location: login.php');
         exit;
     }
     if($_COOKIE["idioma"]==="ES"){
@@ -93,12 +93,12 @@
                     
                     
                     if(isset($_REQUEST['detalles'])){
-                        header("location: vDetalle.php");
+                        header("location: detalle.php");
                         exit;
                     }
                     if(isset($_REQUEST['cerrarS'])){
                         session_unset();
-                        header("location: ../indexProyectoTema5.php");
+                        header("location: ../indexLoginLogoffTema5.php");
                         exit;
                     }
                 ?>
