@@ -60,15 +60,15 @@
                     ':usuario' => $_REQUEST['nombre']
                 ]);
                 
-                $aResultados = $consultaPreparada3->fetch();
+                $aResultados2 = $consultaPreparada3->fetch();
                 $fechaUltimaConexion = $aResultados['T01_FechaHoraUltimaConexion'];
                 $fechaActual = new DateTime('now', new DateTimeZone('Europe/Madrid'));
                 $aSession = [
-                    "CodUsuario" => $aResultados['T01_CodUsuario'],
-                    "DescUsuario" => $aResultados['T01_DescUsuario'],
+                    "CodUsuario" => $aResultados2['T01_CodUsuario'],
+                    "DescUsuario" => $aResultados2['T01_DescUsuario'],
                     "FechaHoraUltimaConexion" => $fechaUltimaConexion,
                     "FechaHoraConexionActual" => $fechaActual,
-                    "NumConexiones" => $aResultados['T01_NumConexiones']
+                    "NumConexiones" => $aResultados2['T01_NumConexiones']
                 ];
                 
                 $_SESSION['usuarioALPDWESLoginLogoff'] = $aSession;
