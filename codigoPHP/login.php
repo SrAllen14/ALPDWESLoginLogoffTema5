@@ -7,6 +7,15 @@
      *  Un botón de entrar que, en caso de introducir los valores correspondientes, nos dará acceso a la siguiente página de inicio privado.
      *  En la esquina superior una imagen con la bandear del idioma establecido.
      */
+
+    // Comprobamos que existe al cookie "idioma".
+    if(!isset($_COOKIE['idioma'])){
+        // En caso de que no exista la creamos con el valor predefinido de ES para que el contenido de nuestra aplicación esté en español.
+        setcookie("idioma", "ES", time()+604.800);
+        // Recargamos la página para que la cookie sea guardada por el navegador.
+        header('Location: login.php');
+        exit;
+    } 
     
     // Importamos las librerías correspondientes y el archivo de configuración correspondiente con los datos para acceder a la base de datos.
     require_once '../core/231018libreriaValidacion.php';
@@ -17,7 +26,7 @@
         'CodUsuario' => '',
         'Password' => '',
     ];
-
+    
     // Comprueba que el botón de "cancelar" ha sido pulsado.
     if(isset($_REQUEST['cancelar'])){
         // En caso de haber pulsado el botón de cancelar nos dirigimos a la página del index inicial.
