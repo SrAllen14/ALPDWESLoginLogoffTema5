@@ -1,17 +1,31 @@
 <?php
+/*
+ * Página inicial del proyecto login - logoff.
+ * En esta página nos encontramos un indexPrincipal con la posibilidad de escoger el idioma
+ * y acceder a la página del formulario de login.
+ */
+
+    // Comprobamos que el botón login ha sido pulsado.
     if(isset($_REQUEST['login'])){
+        // En caso de que haya sido pulsado nos dirigimos a la página del formulario de login.
         header("location: codigoPHP/login.php");
         exit;
     }
     
+    // Comprobamos que existe al cookie "idioma".
     if(!isset($_COOKIE['idioma'])){
+        // En caso de que no exista la creamos con el valor predefinido de ES para que el contenido de nuestra aplicación esté en español.
         setcookie("idioma", "ES", time()+604.800);
+        // Recargamos la página para que la cookie sea guardada por el navegador.
         header('Location: ./indexLoginLogoffTema5.php');
         exit;
     } 
     
+    // Comprobamos que alguno de los botones de idioma ha sido pulsado.
     if(isset($_REQUEST['idioma'])){
+        // En caso de haber sido pulsado, creamos la cookie idioma (en caso de existir, su valor se modificará) y le introducimos el valor dependiendo del idioma escogido.
         setcookie("idioma", $_REQUEST['idioma'], time()+604.800); // caducidad 1 semana
+        // Recargamos la página para que la cookie sea guardada por el navegador.
         header('Location: ./indexLoginLogoffTema5.php');
         exit;
     }
@@ -40,9 +54,9 @@
         </div>
         <div class="cabecera3">
             <form method="post">
-                <button type="submit" name="idioma" id="francia" value="FR"><?php if($_COOKIE['idioma']==='FR'){echo "\u{2714}";}?></button>
-                <button type="submit" name="idioma" id="portugal" value="PT"><?php if($_COOKIE['idioma']==='PT'){echo "\u{2714}";}?></button>
-                <button type="submit" name="idioma" id="espana" value="ES"><?php if($_COOKIE['idioma']==='ES'){echo "\u{2714}";}?></button>
+                <button type="submit" name="idioma" id="francia" value="FR"><?php /* En caso de que la cookie sea FR el boton será marcado con una cruz */ if($_COOKIE['idioma']==='FR'){echo "\u{2714}";}?></button>
+                <button type="submit" name="idioma" id="portugal" value="PT"><?php /* En caso de que la cookie sea PT el boton será marcado con una cruz */ if($_COOKIE['idioma']==='PT'){echo "\u{2714}";}?></button>
+                <button type="submit" name="idioma" id="espana" value="ES"><?php /* En caso de que la cookie sea ES el boton será marcado con una cruz */ if($_COOKIE['idioma']==='ES'){echo "\u{2714}";}?></button>
                 <button type="submit" name="login" id="login">Login</button>
             </form>
         </div>

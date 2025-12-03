@@ -1,9 +1,25 @@
 <?php
+/*
+ * Página de inicio privado de la aplicación.
+ * En esta página encontraremos:
+ *  En la esquina superior derecha una bandera con el idioma establecido.
+ *  En la esquina superior derecha un botón de cierre de sesión el cual nos dirige a la página inicial del proyecto y elimina la sesión.
+ *  En el centro de la página un texto en el idioma establecido con un formato concreto.
+ *  Debajo del texto un botón de detalles que nos dirige a la página de detalles.
+ */
+
+    // Iniciamos la sesión.
     session_start();
+    
+    // Comprobamos que la sesión no está iniciada (no existe o no está definida).
     if(!isset($_SESSION['usuarioALPDWESLoginLogoff'])){
+        // En caso de que no esté definida, nos dirigimos a la página de login.
         header('Location: login.php');
         exit;
     }
+    
+    // Comprobamos que la cookie "idioma" tiene un valor específico.
+    // Con esto formateamos las fechas de última conexión según el idioma establecido.
     if($_COOKIE["idioma"]==="ES"){
         $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Madrid'));
 
@@ -81,6 +97,8 @@
         <div class="container">
             <div class="formulario">
                 <?php
+                    // Comprobamos si es la primera vez que se inicia sesión con el usuario.
+                    // Dependiendo de esa condición el mensaje se mostrará de una forma u otra.
                     if(!empty($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'])){
                         if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
                         if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.<br>Vous vous êtes connecté pour la dernière fois le ".$fechaFormateada."</h2>";}
@@ -91,13 +109,18 @@
                         if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
                     }
                     
-                    
+                    // Comprobamos que el botón "detalles" ha sido pulsado.
                     if(isset($_REQUEST['detalles'])){
+                        // Nos dirigimos a la página de detalles de la aplicación.
                         header("location: detalle.php");
                         exit;
                     }
+                    
+                    // Comprobamos que el botón "cerrarS" ha sido pulsado.
                     if(isset($_REQUEST['cerrarS'])){
+                        // Cerramos la sesión (borramos el campo de la variable superglobal).
                         session_unset();
+                        // Nos dirigimos a la página principal de la aplicación.
                         header("location: ../indexLoginLogoffTema5.php");
                         exit;
                     }
