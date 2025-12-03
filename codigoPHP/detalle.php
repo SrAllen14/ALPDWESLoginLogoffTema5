@@ -1,6 +1,19 @@
 <?php
+/*
+ * Página de detalle de sesión de la aplicación.
+ * En esta página encontraremos:
+ *  Tres tablas cada una con el contenido de las variables superglobales:
+ *  $_SESSION
+ *  $_COOKIE
+ *  $_SERVER
+ */
+
+    // Iniciamos la sesión.
     session_start();
+    
+    // Comprobamso que la sesión no está iniciada (no existe o no está definida).
     if(!isset($_SESSION['usuarioALPDWESLoginLogoff'])){
+        // En caso de que no esté definida, nos dirigimos a la página de login.
         header('Location: login.php');
         exit;
     }
@@ -142,15 +155,22 @@
         <div class="container">
             <div class="tabla">
                 <?php
+                    // Comprueba si el botón "salir" ha sido pulsado.
                     if(isset($_REQUEST['salir'])){
+                        // Nos dirigimos a la página de inicio privado.
                         header("location: inicioPrivado.php");
                         exit;
                     }
+                    
+                    // Comprueba si el botón "cerrarS" ha sido pulsado.
                     if(isset($_REQUEST['cerrarS'])){
+                        // Nos dirigimos a la página inicial.
                         header("location: ../indexLoginLogoffTema5.php");
                         exit;
                     }
-                     echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';
+                    
+                    // Mostramos el contenido de la variable superglobal $_SESSION.
+                    echo '<h2>Valores de la variable superglobal: $_SESSION</h2>';
                     echo "<table>";
                     if(!empty($_SESSION)){
                         foreach ($_SESSION as $key => $value) {
@@ -167,7 +187,7 @@
                     }
                     echo "</table>";
 
-
+                    // Mostramos el contenido de la variable superglobal $_COOKIE.
                     echo '<h2>Valores de la variable superglobal: $_COOKIE</h2>';
                     echo "<table>";
                     if(!empty($_COOKIE)){
@@ -185,6 +205,7 @@
                     }
                     echo "</table>";
                     
+                    // Mostramos el contenido de la variable superglobal $_SERVER.
                     echo '<h2>Valores de la variable superglobal: $_SERVER</h2>';
                     echo "<table>";
                     if(!empty($_SERVER)){
