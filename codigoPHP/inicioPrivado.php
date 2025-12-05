@@ -18,47 +18,50 @@
         exit;
     }
     
-    // Comprobamos que la cookie "idioma" tiene un valor específico.
-    // Con esto formateamos las fechas de última conexión según el idioma establecido.
-    if($_COOKIE["idioma"]==="ES"){
-        $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Madrid'));
+    // Comprobamos que existe la cookie idioma "idioma".
+    if(isset($_COOKIE["idioma"])){
+        // Comprobamos que la cookie "idioma" tiene un valor específico.
+        // Con esto formateamos las fechas de última conexión según el idioma establecido.
+        if($_COOKIE["idioma"]==="ES"){
+            $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Madrid'));
 
-        $fmt = new IntlDateFormatter(
-            'es_ES',                     // Locale en portugués
-            IntlDateFormatter::FULL,     // Formato completo del día
-            IntlDateFormatter::SHORT,    // Formato de hora
-            'Europe/Madrid',             // Timezone
-            IntlDateFormatter::GREGORIAN,
-            "EEEE d 'de' MMMM 'de' yyyy 'a las' HH:mm"  // Formato personalizado
-        );
-        $fechaFormateada = $fmt->format($fecha);
-    }
+            $fmt = new IntlDateFormatter(
+                'es_ES',                     // Locale en portugués
+                IntlDateFormatter::FULL,     // Formato completo del día
+                IntlDateFormatter::SHORT,    // Formato de hora
+                'Europe/Madrid',             // Timezone
+                IntlDateFormatter::GREGORIAN,
+                "EEEE d 'de' MMMM 'de' yyyy 'a las' HH:mm"  // Formato personalizado
+            );
+            $fechaFormateada = $fmt->format($fecha);
+        }
 
-    if($_COOKIE["idioma"]==="FR"){
-        $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Paris'));
-        $fmt = new IntlDateFormatter(
-            'fr_FR',                     // Locale en portugués
-            IntlDateFormatter::FULL,     // Formato completo del día
-            IntlDateFormatter::SHORT,    // Formato de hora
-            'Europe/Paris',             // Timezone
-            IntlDateFormatter::GREGORIAN,
-            "EEEE d  MMMM  yyyy 'à' HH:mm"  // Formato personalizado
-        );
-        $fechaFormateada = $fmt->format($fecha);
-    }
+        if($_COOKIE["idioma"]==="FR"){
+            $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Paris'));
+            $fmt = new IntlDateFormatter(
+                'fr_FR',                     // Locale en portugués
+                IntlDateFormatter::FULL,     // Formato completo del día
+                IntlDateFormatter::SHORT,    // Formato de hora
+                'Europe/Paris',             // Timezone
+                IntlDateFormatter::GREGORIAN,
+                "EEEE d  MMMM  yyyy 'à' HH:mm"  // Formato personalizado
+            );
+            $fechaFormateada = $fmt->format($fecha);
+        }
 
-    if($_COOKIE["idioma"]==="PT"){
-        $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Lisbon'));
-        $fmt = new IntlDateFormatter(
-            'pt_PT',                     // Locale en portugués
-            IntlDateFormatter::FULL,     // Formato completo del día
-            IntlDateFormatter::SHORT,    // Formato de hora
-            'Europe/Lisbon',             // Timezone
-            IntlDateFormatter::GREGORIAN,
-            "EEEE d 'de' MMMM 'de' yyyy 'às' HH:mm"  // Formato personalizado
-        );
-        $fechaFormateada = $fmt->format($fecha);
-    }
+        if($_COOKIE["idioma"]==="PT"){
+            $fecha = new DateTime($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'], new DateTimeZone('Europe/Lisbon'));
+            $fmt = new IntlDateFormatter(
+                'pt_PT',                     // Locale en portugués
+                IntlDateFormatter::FULL,     // Formato completo del día
+                IntlDateFormatter::SHORT,    // Formato de hora
+                'Europe/Lisbon',             // Timezone
+                IntlDateFormatter::GREGORIAN,
+                "EEEE d 'de' MMMM 'de' yyyy 'às' HH:mm"  // Formato personalizado
+            );
+            $fechaFormateada = $fmt->format($fecha);
+        }
+    }   
 ?>
 
 <html lang="es"><head>
@@ -83,11 +86,14 @@
         <div class="cabecera3">
             <form method="post">
                 <?php
-                    if($_COOKIE["idioma"]==="ES"){
-                        echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">'; 
+                    if(isset($_COOKIE["idioma"])){
+                        if($_COOKIE["idioma"]==="ES"){
+                            echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">'; 
+                        }
+                        if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
+                        if($_COOKIE["idioma"]==="PT"){echo '<img src="https://flagcdn.com/pt.svg" alt="imagen" width="20" height="20">';}
                     }
-                    if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
-                    if($_COOKIE["idioma"]==="PT"){echo '<img src="https://flagcdn.com/pt.svg" alt="imagen" width="20" height="20">';}
+                    
                 ?>
                 <button type="submit" name="cerrarS" id="cerrarS">Cerrar Sesión</button>
             </form>
@@ -97,17 +103,21 @@
         <div class="container">
             <div class="formulario">
                 <?php
-                    // Comprobamos si es la primera vez que se inicia sesión con el usuario.
-                    // Dependiendo de esa condición el mensaje se mostrará de una forma u otra.
-                    if(!empty($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'])){
-                        if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
-                        if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.<br>Vous vous êtes connecté pour la dernière fois le ".$fechaFormateada."</h2>";}
-                        if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Você conectou-se pela última vez em ".$fechaFormateada."</h2>";}
-                    } else{
-                        if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
-                        if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.</h2>";}
-                        if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
+                    // Comprobamos que existe y está definida la cookie idioma.
+                    if(isset($_COOKIE["idioma"])){
+                        // Comprobamos si es la primera vez que se inicia sesión con el usuario.
+                        // Dependiendo de esa condición el mensaje se mostrará de una forma u otra.
+                        if(!empty($_SESSION['usuarioALPDWESLoginLogoff']['FechaHoraUltimaConexion'])){
+                            if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Usted se conectó por última vez el ".$fechaFormateada."</h2>";}
+                            if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.<br>Vous vous êtes connecté pour la dernière fois le ".$fechaFormateada."</h2>";}
+                            if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.<br>Você conectou-se pela última vez em ".$fechaFormateada."</h2>";}
+                        } else{
+                            if($_COOKIE["idioma"]==="ES"){echo "<h2>Bienvenido ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta es la ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
+                            if($_COOKIE["idioma"]==="FR"){echo "<h2>Bienvenue ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> C´est le ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." fois que vous vous connectez.</h2>";}
+                            if($_COOKIE["idioma"]==="PT"){echo "<h2>Bem-vindo ".$_SESSION['usuarioALPDWESLoginLogoff']['DescUsuario']."<br> Esta é a ".$_SESSION['usuarioALPDWESLoginLogoff']['NumConexiones']." vez que se conecta.</h2>";}
+                        }
                     }
+                        
                     
                     // Comprobamos que el botón "detalles" ha sido pulsado.
                     if(isset($_REQUEST['detalles'])){

@@ -143,9 +143,12 @@
         <div class="cabecera3">
             <form method="post">
                 <?php
-                    if($_COOKIE["idioma"]==="ES" || !isset($_COOKIE["idioma"])){echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">';}
-                    if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
-                    if($_COOKIE["idioma"]==="PT"){echo '<img src="https://flagcdn.com/pt.svg" alt="imagen" width="20" height="20">';}
+                    // Comprobamos que existe la cookie "idioma".
+                    if(isset($_COOKIE["idioma"])){
+                        if($_COOKIE["idioma"]==="ES" || !isset($_COOKIE["idioma"])){echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">';}
+                        if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
+                        if($_COOKIE["idioma"]==="PT"){echo '<img src="https://flagcdn.com/pt.svg" alt="imagen" width="20" height="20">';}
+                    }  
                 ?>
                 <button type="submit" name="cerrarS" id="cerrarS">Cerrar Sesión</button>
             </form>

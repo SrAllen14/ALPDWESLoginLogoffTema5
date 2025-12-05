@@ -15,7 +15,7 @@
         // Recargamos la página para que la cookie sea guardada por el navegador.
         header('Location: login.php');
         exit;
-    } 
+    }
     
     // Importamos las librerías correspondientes y el archivo de configuración correspondiente con los datos para acceder a la base de datos.
     require_once '../core/231018libreriaValidacion.php';
