@@ -1,5 +1,7 @@
 <?php
 /*
+ * @author: Álvaro Allén Perlines
+ * @since: 05/12/2025
  * Página de inicio privado de la aplicación.
  * En esta página encontraremos:
  *  En la esquina superior derecha una bandera con el idioma establecido.
@@ -61,6 +63,12 @@
             );
             $fechaFormateada = $fmt->format($fecha);
         }
+    } else{
+        // En caso de que no exista la creamos con el valor predefinido de ES para que el contenido de nuestra aplicación esté en español.
+        setcookie("idioma", "ES", time()+604.800);
+        // Recargamos la página para que la cookie sea guardada por el navegador.
+        header('Location: inicioPrivado.php');
+        exit;
     }   
 ?>
 
@@ -144,7 +152,7 @@
     <footer>
         <div class="pie1">
             <a href="../indexProyectoTema5.php">Álvaro Allén Perlines</a>
-            <time>2025-11-26</time>
+            <time>2025-12-05</time>
         </div>
         <div class="pie2">
             <a href="https://github.com/SrAllen14/ALPDWESLoginLogoffTema5/tree/master" target="blank"><i class="fab fa-github"></i></a>

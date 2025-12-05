@@ -1,5 +1,7 @@
 <?php
 /*
+ * @author: Álvaro Allén Perlines
+ * @since: 05/12/2025
  * Página inicial del proyecto login - logoff.
  * En esta página nos encontramos un indexPrincipal con la posibilidad de escoger el idioma
  * y acceder a la página del formulario de login.
@@ -69,7 +71,7 @@
     <footer>
         <div class="pie1">
             <a href="../index.html">Álvaro Allén Perlines</a>
-            <time>2025-11-24</time>
+            <time>2025-12-05</time>
         </div>
         <div class="pie2">
             <a href="https://github.com/SrAllen14/ALPDWESLoginLogoffTema5/tree/master" target="blank"><i class="fab fa-github"></i></a>

@@ -1,5 +1,7 @@
 <?php
 /*
+ * @author: Álvaro Allén Perlines
+ * @since: 05/12/2025
  * Página de detalle de sesión de la aplicación.
  * En esta página encontraremos:
  *  Tres tablas cada una con el contenido de las variables superglobales:
@@ -148,7 +150,13 @@
                         if($_COOKIE["idioma"]==="ES" || !isset($_COOKIE["idioma"])){echo '<img src="https://flagcdn.com/es.svg" alt="imagen" width="20" height="20">';}
                         if($_COOKIE["idioma"]==="FR"){echo '<img src="https://flagcdn.com/fr.svg" alt="imagen" width="20" height="20">';}
                         if($_COOKIE["idioma"]==="PT"){echo '<img src="https://flagcdn.com/pt.svg" alt="imagen" width="20" height="20">';}
-                    }  
+                    } else{
+                        // En caso de que no exista la creamos con el valor predefinido de ES para que el contenido de nuestra aplicación esté en español.
+                        setcookie("idioma", "ES", time()+604.800);
+                        // Recargamos la página para que la cookie sea guardada por el navegador.
+                        header('Location: detalle.php');
+                        exit;
+                    }
                 ?>
                 <button type="submit" name="cerrarS" id="cerrarS">Cerrar Sesión</button>
             </form>
@@ -235,7 +243,7 @@
     <footer>
         <div class="pie1">
             <a href="../indexProyectoTema5.php">Álvaro Allén Perlines</a>
-            <time>2025-11-24</time>
+            <time>2025-12-05</time>
         </div>
         <div class="pie2">
             <a href="https://github.com/SrAllen14/ALPDWESLoginLogoffTema5/tree/master" target="blank"><i class="fab fa-github"></i></a>

@@ -1,5 +1,7 @@
 <?php
     /*
+     * @author: Álvaro Allén Perlines
+     * @since: 05/12/2025
      * Página de formulario para indentificarse como usuario existente.
      * En esta página nos encontramos: 
      *  Un formulario con dos campos: usuario y contraseña
@@ -174,7 +176,7 @@
         <footer>
             <div class="pie1">
                 <a href="../indexProyectoTema5.php">Álvaro Allén Perlines</a>
-                <time>2025-11-25</time>
+                <time>2025-12-05</time>
             </div>
             <div class="pie3">
                 <a href="https://elpais.com/subscriptions/#/sign-in?prod=REG&o=CABEP&prm=login_cabecera_el-pais&backURL=https%3A%2F%2Felpais.com" target="blank">Página imitada</a>
